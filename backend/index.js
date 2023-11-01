@@ -1,0 +1,18 @@
+import express from 'express';
+import DBConnection from './database/db.js';  
+
+
+const app = express();
+const port = 8000;
+
+DBConnection();
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
