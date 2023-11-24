@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const DBConneciton = async () => {
+const DBConnection = async () => {
   const MONGO_URL = process.env.MONGO_URL;
   console.log(MONGO_URL);
   try {
@@ -14,4 +14,4 @@ const DBConneciton = async () => {
   }
 };
 
-export default DBConneciton;
+export default DBConnection;

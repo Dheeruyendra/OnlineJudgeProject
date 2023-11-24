@@ -2,10 +2,11 @@ import express from "express";
 import DBConnection from "./database/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import route from "./routes/routes.js";
+
+import router from "./router/routes.js";
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = 8000 || process.env.PORT; 
 DBConnection();
 app.use(
   cors({
@@ -17,7 +18,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use("/", route);
+app.use("/", router);
 
 app.listen(port, () => {
   console.log(`server is listening at http://localhost:${port}`);
