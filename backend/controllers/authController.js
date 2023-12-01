@@ -41,7 +41,7 @@ const signup = async (req, res) => {
 
   //validate data (check if user already exists)
   if ( !userid || !email || !password || !cpassword) {
-    return res.status(400).json({ message: "All fields are required" });
+    return res.status(400).json({ success: false, message: "All fields are required" });
   }
 
   try {
@@ -50,9 +50,9 @@ const signup = async (req, res) => {
     const userIdExists = await User.findOne({ userid: userid });
 
     if (userEmailExists) {
-      return res.status(409).json({ message: "User already exists " });
+      return res.status(409).json({ success : false, message: "User already exists " });
     } else if (userIdExists) {
-      return res.status(406).json({ message: "UserId is not available" });
+      return res.status(406).json({ success : false, message: "UserId is not available" });
     } else if (password !== cpassword) {
       return res.status(400).json({ message: "Passwords do not match" });
     }
@@ -60,7 +60,7 @@ const signup = async (req, res) => {
     else {
       const user = new User({ userid, email, password });
       await user.save();
-      res.status(201).json({ message: "User registered successfully" });
+      res.status(201).json({ success: true, message: "User registered successfully" });
     }
   } catch (error) {
     console.log(error.message);
