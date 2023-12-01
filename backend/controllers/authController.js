@@ -10,24 +10,24 @@ const login = async (req, res) => {
 
     //validate data (check if user already exists)
     if (!email || !password) {
-      return res.status(422).json({ error: "All fields are required" });
+      return res.status(422).json({ success : false, message: "Please enter all details" });
     }
 
     //find user in db(if exists)
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "User does not exists " });
+      return res.status(404).json({ success : false, message: "User not found!" });
     }
 
     //compare password (bcrypt)
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ success : false,  message: "Invalid userName or password" });
     } else {
       let token = await user.generateAuthToken();
       res
         .status(201)
-        .json({ token: token, message: "User logged in successfully" });
+        .json({ token: token, success : true, message: "User logged in successfully" });
     }
   } catch (error) {
     console.log(error.message);
@@ -36,11 +36,11 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   //get all data from body(req.body)
-  const { name, userid, email, password, cpassword } = req.body;
+  const { userid, email, password, cpassword } = req.body;
   console.log(req.body);
 
   //validate data (check if user already exists)
-  if (!name || !userid || !email || !password || !cpassword) {
+  if ( !userid || !email || !password || !cpassword) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
@@ -58,7 +58,7 @@ const signup = async (req, res) => {
     }
     //register new user
     else {
-      const user = new User({ name, userid, email, password });
+      const user = new User({ userid, email, password });
       await user.save();
       res.status(201).json({ message: "User registered successfully" });
     }

@@ -3,7 +3,7 @@ import Problem from "../models/problemSchema.js";
 const addProblem = async (req, res) => {
   try {
     const {
-      promblemid,
+      problemid,
       name,
       statement,
       difficulty,

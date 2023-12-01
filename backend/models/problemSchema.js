@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const problemSchema = mongoose.Schema({
   problemid: {
-    type: String,
+    type: Number,
     required: true,
   },
   name: {
@@ -35,11 +35,9 @@ const problemSchema = mongoose.Schema({
   },
   intestcase: {
     type: String,
-    required: true,
   },
   outtestcase: {
     type: String,
-    required: true,
   },
 });
 export default mongoose.model("problem", problemSchema);

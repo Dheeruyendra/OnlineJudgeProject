@@ -1,8 +1,8 @@
 import express from "express";
-import DBConnection from "./database/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import DBConnection from "./database/db.js";
 import router from "./router/routes.js";
 
 const app = express();
