@@ -3,20 +3,23 @@ import Problem from "../models/problemSchema.js";
 const addProblem = async (req, res) => {
   try {
     const {
-      problemid,
-      name,
-      statement,
+      title,
+      description,
+      inpFormat,  
+      outFormat,
       difficulty,
       tag,
       constraints,
       sinput,
       soutput,
     } = req.body;
-    const authorId = store.get("email");
+    console.log(req.body);
+    //const authorId = store.get("email");
     const problem = await Problem.create({
-      problemid,
-      name,
-      statement,
+      title,
+      description,
+      inpFormat,
+      outFormat,
       difficulty,
       tag,
       constraints,

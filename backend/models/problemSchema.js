@@ -1,17 +1,19 @@
 import mongoose from "mongoose";
 
 const problemSchema = mongoose.Schema({
-  problemid: {
-    type: Number,
-    required: true,
-  },
-  name: {
+  title: {
     type: String,
     required: true,
   },
-  statement: {
+  description: {
     type: String,
     required: true,
+  },
+  inpFormat: {
+    type: String,
+  },
+  outFormat: {
+    type: String,
   },
   difficulty: {
     type: String,
@@ -23,7 +25,6 @@ const problemSchema = mongoose.Schema({
   },
   constraints: {
     type: String,
-    required: true,
   },
   sinput: {
     type: String,
@@ -33,11 +34,6 @@ const problemSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  intestcase: {
-    type: String,
-  },
-  outtestcase: {
-    type: String,
-  },
+  
 });
 export default mongoose.model("problem", problemSchema);

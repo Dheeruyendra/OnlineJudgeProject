@@ -17,7 +17,7 @@ router.post("/login", login);
 // Problem routes
 router.post("/addProblem", addProblem);
 router.get("/problems", getAllProblems);
-router.get("/problems/:id", getProblem);
+router.get("/problem/:id", getProblem);
 
 // Submission routes
 router.post("/addSubmission", addSubmission);
